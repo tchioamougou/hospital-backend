@@ -27,6 +27,7 @@ db.serialize(() => {
         CREATE TABLE IF NOT EXISTS Departments (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             name TEXT NOT NULL,
+            Description TEXT,
             department_head INTEGER,
             FOREIGN KEY (department_head) REFERENCES Personnel(id)
         );

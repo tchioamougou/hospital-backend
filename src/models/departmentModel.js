@@ -12,7 +12,7 @@ const Department = {
     },
 
     createDepartment: (data, callback) => {
-        const query = `INSERT INTO Departments (name, department_head) VALUES (?, ?)`;
+        const query = `INSERT INTO Departments (name, department_head,) VALUES (?, ?)`;
         db.run(query, [data.name, data.department_head], function (err) {
             callback(err, { id: this.lastID });
         });

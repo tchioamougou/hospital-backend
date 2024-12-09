@@ -22,7 +22,39 @@ db.serialize(() => {
             id_service INTEGER
         );
     `);
+    // Create Departments Table
+    db.run(`
+        CREATE TABLE IF NOT EXISTS Departments (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            name TEXT NOT NULL,
+            department_head INTEGER,
+            FOREIGN KEY (department_head) REFERENCES Personnel(id)
+        );
+    `, (err) => {
+        if (err) {
+            console.error('Error creating Departments table:', err.message);
+        } else {
+            console.log('Departments table created successfully.');
+        }
+    });
 
+    // Create Services Table
+    db.run(`
+        CREATE TABLE IF NOT EXISTS Services (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            name TEXT NOT NULL,
+            department_id INTEGER NOT NULL,
+            service_head INTEGER,
+            FOREIGN KEY (department_id) REFERENCES Departments(id),
+            FOREIGN KEY (service_head) REFERENCES Personnel(id)
+        );
+    `, (err) => {
+        if (err) {
+            console.error('Error creating Services table:', err.message);
+        } else {
+            console.log('Services table created successfully.');
+        }
+    });
     console.log('Database initialized.');
     db.close();
 });

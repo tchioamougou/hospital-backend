@@ -2,6 +2,10 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const patientRoutes = require('./routes/patientRoutes');
+const departmentRoutes = require('./routes/departmentRoutes');
+const serviceRoutes = require('./routes/serviceRoutes');
+
+
 
 const app = express();
 app.use(cors());
@@ -47,5 +51,6 @@ app.get('/', (req, res) => {
     `);
 });
 app.use('/api/patients', patientRoutes); // Route pour les patients
-
+app.use('/api/departments', departmentRoutes);
+app.use('/api/services', serviceRoutes);
 module.exports = app;

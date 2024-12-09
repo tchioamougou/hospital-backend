@@ -3,6 +3,7 @@ const departmentService = require('../services/departmentService');
 const departmentController = {
     getAllDepartments: (req, res) => {
         departmentService.getAllDepartments((err, rows) => {
+            console.error('Database error:', err);
             if (err) {
                 res.status(500).json({ error: err.message });
             } else {
@@ -14,6 +15,7 @@ const departmentController = {
     getDepartmentById: (req, res) => {
         const id = req.params.id;
         departmentService.getDepartmentById(id, (err, row) => {
+
             if (err) {
                 res.status(500).json({ error: err.message });
             } else if (!row) {
